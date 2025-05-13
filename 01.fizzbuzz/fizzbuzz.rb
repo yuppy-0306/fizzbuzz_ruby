@@ -2,7 +2,7 @@
     fizzbuzzz_num = 15
     fizz_num = 3
     buzz_num = 5
-    if i % fizz_num == 0 && i % buzz_num == 0
+    if i % fizzbuzzz_num == 0 
         puts "FizzBuzz"
     elsif i % fizz_num == 0
         puts "Fizz"
