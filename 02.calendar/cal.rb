@@ -10,6 +10,7 @@ def display_calendar(year,month)
     indent = first_day.wday
     print "    " * indent
     
+    
     day = 1
     while day <= last_day.day
         printf "%4d", day
@@ -22,10 +23,17 @@ def display_calendar(year,month)
     print "\n"
 end
 
-year = 2003
-month = 3
 
-# カレンダーを表示
+options = {}
+opt = OptionParser.new
+
+opt.on("-y YEAR", Integer) { |y| options[:year] = y }
+opt.on("-m MONTH", Integer) { |m| options[:month] = m }
+opt.parse!
+
+year = options[:year] || Date.today.year
+month = options[:month] || Date.today.month
+
 display_calendar(year, month)
 
 
