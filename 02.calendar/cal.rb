@@ -4,16 +4,33 @@ require 'optparse'
 
 def display_calendar(year,month)
     first_day = Date.new(year, month, 1)
-    #first_dayはy年m月1日が入る
     last_day = Date.new(year,month,-1)
-    #last_dayはy年m月の最終日が入る
-    puts "#{year}年#{month}月"
-    puts "日 月 火 水 木 金 土"
+    month_name = first_day.strftime("%B")
+    printf "           #{month}月 #{year}\n"
+    printf "   日  月  火  水  木  金  土\n"
     indent = first_day.wday
     print "    " * indent
-    #曜日分だけ空白を入れる
-
+    
+    day = 1
+    while day <= last_day.day
+        printf "%4d", day
+        indent += 1
+        if indent % 7 == 0
+            print "\n"
+        end
+        day += 1
+    end
+    print "\n"
 end
+
+year = 2003
+month = 3
+
+# カレンダーを表示
+display_calendar(year, month)
+
+
+
 #今月のカレンダーを表示するプログラム
 #-yで年を指定
 #-mで月を指定
