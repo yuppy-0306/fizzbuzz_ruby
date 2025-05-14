@@ -9,6 +9,8 @@ def display_calendar(year,month)
     #last_dayはy年m月の最終日が入る
     puts "#{year}年#{month}月"
     puts "日 月 火 水 木 金 土"
+    indent = first_day.wday
+    print "    " * indent
     #曜日分だけ空白を入れる
 
 end
