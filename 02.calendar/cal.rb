@@ -5,7 +5,6 @@ require 'optparse'
 def display_calendar(year,month)
     first_day = Date.new(year, month, 1)
     last_day = Date.new(year,month,-1)
-    month_name = first_day.strftime("%B")
     printf "           #{month}月 #{year}\n"
     printf "   日  月  火  水  木  金  土\n"
     indent = first_day.wday
