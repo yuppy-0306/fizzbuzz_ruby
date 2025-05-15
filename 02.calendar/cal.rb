@@ -5,15 +5,15 @@ require 'optparse'
 def display_calendar(year,month)
     first_day = Date.new(year, month, 1)
     last_day = Date.new(year,month,-1)
-    printf "           #{month}月 #{year}\n"
-    printf "   日  月  火  水  木  金  土\n"
+    printf "       #{month}月 #{year}\n"
+    printf " 日 月 火 水 木 金 土\n"
     indent = first_day.wday
-    print "    " * indent
+    print "   " * indent
     
     
     day = 1
     while day <= last_day.day
-        printf "%4d", day
+        printf "%3d", day
         indent += 1
         if indent % 7 == 0
             print "\n"
