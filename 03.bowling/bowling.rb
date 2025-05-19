@@ -20,12 +20,12 @@ end
 
 point = 0
 frames.each do |frame|
-  if frame[0] == 10
-    point += 30
-  elsif frame.sum == 10
-    point += frame[0] + 10
-  else
-    point += frame.sum
-  end
+  point += if frame[0] == 10
+             30
+           elsif frame.sum == 10
+             frame[0] + 10
+           else
+             frame.sum
+           end
 end
 p point
