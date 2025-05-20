@@ -8,11 +8,11 @@ scores = score.split(',')
 
 shots = []
 scores.each do |s|
-  if s == 'X'
-    shots << 10
-  else
-    shots << s.to_i
-  end
+  shots << if s == 'X'
+             10
+           else
+             s.to_i
+           end
 end
 
 frames = []
@@ -27,28 +27,26 @@ while frames.size < 10
   end
 end
 
-
 point = 0
-idx = 0
 frames.each_with_index do |frame, idx|
   if idx < 9
 
     if frame[0] == 10
       next_frame = frames[idx + 1]
-      if next_frame[0] == 10 && idx < 8
-        bonus = 10 + frames[idx + 2][0]
-      else
-        bonus = next_frame[0] + next_frame[1] 
-      end
+      bonus = if next_frame[0] == 10 && idx < 8
+                10 + frames[idx + 2][0]
+              else
+                next_frame[0] + next_frame[1]
+              end
       point += 10 + bonus
-    
+
     elsif frame.sum == 10
       point += 10 + frames[idx + 1][0]
     else
       point += frame.sum
     end
   else
-    
+
     point += shots[i - 2, 3].compact.sum
   end
 end
