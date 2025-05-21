@@ -7,20 +7,14 @@ def display_calendar(year,month)
     last_day = Date.new(year,month,-1)
     printf "       #{month}月 #{year}\n"
     printf " 日 月 火 水 木 金 土\n"
-    indent = first_day.wday
-    print "   " * indent
-    
-    
-    day = 1
-    while day <= last_day.day
-        printf "%3d", day
-        indent += 1
-        if indent % 7 == 0
-            print "\n"
-        end
-        day += 1
+    first_day_offset = first_day.wday
+    print "   " * first_day_offset
+
+    (first_day..last_day).each do |date|
+        print date.day.to_s.rjust(3)
+        puts if date.saturday?
     end
-    print "\n"
+    puts
 end
 
 
