@@ -7,13 +7,13 @@ require 'optparse'
 def display_calendar(year, month)
   first_day = Date.new(year, month, 1)
   last_day = Date.new(year, month, -1)
-  printf "       #{month}月 #{year}\n"
-  printf " 日 月 火 水 木 金 土\n"
+  puts "       #{month}月 #{year}"
+  puts "日 月 火 水 木 金 土"
   first_day_offset = first_day.wday
   print '   ' * first_day_offset
 
   (first_day..last_day).each do |date|
-    print date.day.to_s.rjust(3)
+    print date.day.to_s.rjust(2) + ' '
     puts if date.saturday?
   end
   puts
