@@ -1,14 +1,17 @@
-(1..20).each do |i|
-  fizzbuzz_num = 15
-  fizz_num = 3
-  buzz_num = 5
-  if i % fizzbuzz_num == 0
-    puts 'FizzBuzz'
-  elsif i % fizz_num == 0
-    puts 'Fizz'
-  elsif i % buzz_num == 0
-    puts 'Buzz'
+def fizz_buzz(i)
+  if i % 15 == 0
+    'FizzBuzz'
+  elsif i % 3 == 0
+    'Fizz'
+  elsif i % 5 == 0
+    'Buzz'
   else
-    puts i
+    i.to_s
   end
+end
+
+# FizzBuzzの出力
+
+(1..20).each do |i|
+  puts fizz_buzz(i)
 end
