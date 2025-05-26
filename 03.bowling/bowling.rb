@@ -1,19 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'debug'
-
 score = ARGV[0]
 scores = score.split(',')
 
-shots = []
-scores.each do |s|
-  shots << if s == 'X'
-             10
-           else
-             s.to_i
-           end
-end
+shots = scores.map { |s| s == 'X' ? 10 : s.to_i }
 
 frames = []
 i = 0
