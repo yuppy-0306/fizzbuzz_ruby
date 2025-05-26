@@ -8,8 +8,8 @@ shots = scores.map { |s| s == 'X' ? 10 : s.to_i }
 
 frames = []
 i = 0
-while frames.size < 10
-  if shots[i] == 10 && frames.size < 9
+while frames.size < 9
+  if shots[i] == 10
     frames << [10]
     i += 1
   else
@@ -17,6 +17,7 @@ while frames.size < 10
     i += 2
   end
 end
+frames << shots[i..]
 
 point = 0
 frames.each_with_index do |frame, idx|
@@ -37,8 +38,7 @@ frames.each_with_index do |frame, idx|
       point += frame.sum
     end
   else
-
-    point += shots[i - 2, 3].compact.sum
+    point += frame.sum
   end
 end
 
