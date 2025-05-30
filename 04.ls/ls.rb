@@ -25,3 +25,5 @@ def entries_length_width(entries)
     max_entries_width = max_length + 2
   return max_entries_width_width
 end
+
+TERMINAL_WIDTH = 80
