@@ -21,25 +21,23 @@ frames << shots[i..]
 
 point = 0
 
-frames.each do |frame|
-  point += frame.sum
-end
-
 frames.each_with_index do |frame, idx|
-  next if idx >= 9 || (frame.sum < 10 && frame[0] != 10)
+  break if idx == 9
 
-  if frame[0] == 10
-    next_frame = frames[idx + 1]
-    bonus = if next_frame[0] == 10 && idx < 8
-              10 + frames[idx + 2][0]
-            else
-              next_frame[0] + (next_frame[1] || 0)
-            end
-    point += bonus
-    next
-  end
+  point += frame.sum
+
+  next if idx >= 9 || frame.sum < 10
 
   point += frames[idx + 1][0]
+  next if frame[0] != 10
+
+  point += if frames[idx + 1][0] == 10 && idx < 8
+             frames[idx + 2][0]
+           else
+             frames[idx + 1][1] || 0
+           end
 end
+
+point += frames[9].sum
 
 puts point
