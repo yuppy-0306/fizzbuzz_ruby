@@ -18,3 +18,10 @@ sorted_visible_entries = visible_entries.sort
 sorted_visible_entries.each do |entry|
   puts entry
 end
+
+def entries_length_width(entries)
+    return 0 if entries.empty?
+    max_length = entries.map(&:length).max
+    max_entries_width = max_length + 2
+  return max_entries_width_width
+end
