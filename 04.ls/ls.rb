@@ -11,11 +11,10 @@ def filter_entries(entries)
   end
 end
 
-visible_entries = filter_entries(all_entries)
-visible_entries.each do |entry|
+example=["index.html", "a.img", "b.img", "c.img"]
+
+visible_entries = filter_entries(example)
+sorted_visible_entries = visible_entries.sort
+sorted_visible_entries.each do |entry|
   puts entry
 end
-
-
-
-
