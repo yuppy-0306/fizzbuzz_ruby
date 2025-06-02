@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-
 # !/usr/bin/env ruby
 
-Dir.pwd
+current_directory = Dir.pwd
+entries = Dir.entries(current_directory)
 
 def filter_entries(entries)
   entries.reject do |entry_name|
@@ -12,13 +12,7 @@ def filter_entries(entries)
   end
 end
 
-example = ['index.html', 'a.img', 'b.img', 'c.img']
-
-visible_entries = filter_entries(example)
-sorted_visible_entries = visible_entries.sort
-sorted_visible_entries.each do |entry|
-  puts entry
-end
+visible_entries = filter_entries(entries)
 
 def entries_length_width(entries)
   return 0 if entries.empty?
@@ -44,7 +38,7 @@ def build_grid(entries, num_rows, num_columns)
   entries.each_with_index do |entry, index|
     row = index % num_rows
     col = index / num_rows
-    grid[row][col] = entry if col < num_columns
+    grid[row][col] = entry 
   end
   grid
 end
@@ -52,22 +46,15 @@ end
 def print_grid(entries, terminal_width)
   return if entries.empty?
 
-  sorted_entries = entries.sort
-  max_entries_width = entries_length_width(sorted_entries)
-  dimensions = get_grid_dims(sorted_entries, terminal_width, max_entries_width)
-  num_columns = dimensions[:num_columns]
-  num_rows = dimensions[:num_rows]
-  grid = build_grid(sorted_entries, num_rows, num_columns)
+  sorted = entries.sort
+  width = entries_length_width(sorted)
+  dims = get_grid_dims(sorted, terminal_width, width)
+  grid = build_grid(sorted, dims[:num_rows], dims[:num_columns])
 
-  (0...num_rows).each do |row|
-    (0...num_columns).each do |col|
-      entry = grid[row][col]
-      if entry
-        print entry.ljust(max_entries_width)
-      else
-        print ' '.ljust(max_entries_width)
-      end
-    end
+  grid.each do |row|
+    row.each { |entry| print (entry || '').ljust(width) }
     puts
   end
 end
+
+print_grid(visible_entries, TERMINAL_WIDTH)
