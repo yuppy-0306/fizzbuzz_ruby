@@ -22,7 +22,7 @@ frames << shots[i..]
 point = 0
 
 frames.each_with_index do |frame, idx|
-  break if idx == 9
+  
 
   point += frame.sum
 
@@ -38,6 +38,6 @@ frames.each_with_index do |frame, idx|
            end
 end
 
-point += frames[9].sum
+
 
 puts point
