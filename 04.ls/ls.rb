@@ -16,7 +16,7 @@ end
 visible_entries = filter_entries(entries)
 
 def entries_length_width(entries)
-  return 0 if entries.empty?
+  return if entries.empty?
 
   max_length = entries.map(&:length).max
   max_length + 2
