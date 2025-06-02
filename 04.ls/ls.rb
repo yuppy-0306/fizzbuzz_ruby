@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # !/usr/bin/env ruby
 
 current_directory = Dir.pwd
@@ -38,7 +39,7 @@ def build_grid(entries, num_rows, num_columns)
   entries.each_with_index do |entry, index|
     row = index % num_rows
     col = index / num_rows
-    grid[row][col] = entry 
+    grid[row][col] = entry
   end
   grid
 end
