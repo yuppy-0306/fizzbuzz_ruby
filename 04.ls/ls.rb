@@ -2,8 +2,7 @@
 
 # !/usr/bin/env ruby
 
-current_directory = Dir.pwd
-entries = Dir.entries(current_directory)
+entries = Dir.glob('*')
 
 def filter_entries(entries)
   entries.reject do |entry_name|
