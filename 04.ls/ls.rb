@@ -6,9 +6,7 @@ entries = Dir.glob('*')
 
 def filter_entries(entries)
   entries.reject do |entry_name|
-    entry_name == '.' ||
-      entry_name == '..' ||
-      entry_name.start_with?('.')
+    entry_name.start_with?('.')
   end
 end
 
