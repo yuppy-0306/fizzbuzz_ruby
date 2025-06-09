@@ -2,13 +2,7 @@
 
 # !/usr/bin/env ruby
 
-entries = Dir.glob('*')
-
-def filter_entries(entries)
-  entries.reject do |entry_name|
-    entry_name.start_with?('.')
-  end
-end
+entries = Dir.glob('*', File::FNM_DOTMATCH)
 
 visible_entries = filter_entries(entries)
 
@@ -31,13 +25,9 @@ def get_grid_dims(entries, terminal_width, max_entries_width)
 end
 
 def build_grid(entries, num_rows, num_columns)
-  grid = Array.new(num_rows) { Array.new(num_columns) }
-  entries.each_with_index do |entry, index|
-    row = index % num_rows
-    col = index / num_rows
-    grid[row][col] = entry
-  end
-  grid
+  columns = entries.each_slice(num_rows).to_a
+  columns.fill(Array.new(num_rows), columns.size...num_columns)
+  columns.transpose
 end
 
 def print_grid(entries, terminal_width)
