@@ -25,9 +25,8 @@ def get_grid_dims(entries, terminal_width, max_entries_width)
   return [0, 0] if entries.empty?
 
   max_entries_width = [1, max_entries_width].max
-  num_columns = (terminal_width / max_entries_width).floor
-  num_columns = [1, num_columns].max
-  num_rows = (entries.size.to_f / num_columns).ceil
+  num_columns = [1, (terminal_width / max_entries_width).floor].max
+  num_rows = entries.size.ceildiv(num_columns)
   [num_columns, num_rows]
 end
 
