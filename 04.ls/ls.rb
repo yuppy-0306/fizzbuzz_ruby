@@ -41,7 +41,6 @@ def build_grid(entries, num_rows, num_columns)
 end
 
 def print_grid(entries, terminal_width)
-  return if entries.empty?
 
   sorted = entries.sort
   width = entries_length_width(sorted)
