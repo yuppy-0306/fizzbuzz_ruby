@@ -1,10 +1,5 @@
 # frozen_string_literal: true
-
 # !/usr/bin/env ruby
-
-entries = Dir.glob('*', File::FNM_DOTMATCH)
-
-visible_entries = filter_entries(entries)
 
 def entries_length_width(entries)
   return 0 if entries.nil? || entries.empty?
@@ -31,7 +26,6 @@ def build_grid(entries, num_rows, num_columns)
 end
 
 def print_grid(entries, terminal_width)
-
   sorted = entries.sort
   width = entries_length_width(sorted)
   num_columns, num_rows = get_grid_dims(sorted, terminal_width, width)
@@ -42,4 +36,6 @@ def print_grid(entries, terminal_width)
   end
 end
 
-print_grid(visible_entries, TERMINAL_WIDTH)
+# メイン処理
+entries = Dir.glob('*')
+print_grid(entries, TERMINAL_WIDTH)
