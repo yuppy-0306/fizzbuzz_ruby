@@ -20,8 +20,8 @@ def get_grid_dims(entries, terminal_width, max_entries_width)
 end
 
 def build_grid(entries, num_rows, num_columns)
-  columns = entries.each_slice(num_rows).to_a
-  columns.fill(Array.new(num_rows), columns.size...num_columns)
+  columns = entries.each_slice(num_rows).map { |col| col.fill('', col.size...num_rows) }
+  columns.fill(Array.new(num_rows, ''), columns.size...num_columns)
   columns.transpose
 end
 
