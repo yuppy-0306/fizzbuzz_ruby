@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Frame
   attr_reader :shots
 
@@ -25,6 +26,7 @@ class Frame
   def score(frames, idx)
     base = total_pins
     return base if idx >= 9
+
     if strike?
       base + next_pins(frames, idx, 2)
     elsif spare?
@@ -34,8 +36,8 @@ class Frame
     end
   end
 
-  def next_pins(frames, idx, n)
+  def next_pins(frames, idx, count)
     shots = frames[(idx + 1)..].flat_map(&:shots)
-    shots.first(n).sum(&:pins)
+    shots.first(count).sum(&:pins)
   end
 end
