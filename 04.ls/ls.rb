@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 # !/usr/bin/env ruby
 
 def entries_length_width(entries)
-  return 0 if entries.nil? || entries.empty?
+  return 0 if entries.blank?
 
   max_length = entries.map(&:length).max
   max_length + 2
@@ -19,10 +20,9 @@ def get_grid_dims(entries, terminal_width, max_entries_width)
   [num_columns, num_rows]
 end
 
-def build_grid(entries, num_rows, num_columns)
+def build_grid(entries, num_rows)
   columns = entries.each_slice(num_rows).to_a
   columns.last&.fill('', columns.last.size...num_rows)
-  columns.fill(Array.new(num_rows, ''), columns.size...num_columns)
   columns.transpose
 end
 
@@ -33,7 +33,7 @@ def print_grid(entries, terminal_width)
   grid = build_grid(sorted, num_rows, num_columns)
 
   grid.each do |row|
-    puts row.map { |entry| (entry || '').ljust(width) }.join
+    puts row.map { |entry| entry.ljust(width) }.join
   end
 end
 
