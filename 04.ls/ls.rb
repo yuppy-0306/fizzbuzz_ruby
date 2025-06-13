@@ -3,7 +3,7 @@
 # !/usr/bin/env ruby
 
 def entries_length_width(entries)
-  return 0 if entries.blank?
+  return 0 if entries.nil? || entries.empty?
 
   max_length = entries.map(&:length).max
   max_length + 2
@@ -29,9 +29,8 @@ end
 def print_grid(entries, terminal_width)
   sorted = entries.sort
   width = entries_length_width(sorted)
-  num_columns, num_rows = get_grid_dims(sorted, terminal_width, width)
-  grid = build_grid(sorted, num_rows, num_columns)
-
+  _, num_rows = get_grid_dims(sorted, terminal_width, width)
+  grid = build_grid(sorted, num_rows)
   grid.each do |row|
     puts row.map { |entry| entry.ljust(width) }.join
   end
