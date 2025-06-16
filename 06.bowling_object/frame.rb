@@ -19,10 +19,6 @@ class Frame
     !strike? && total_pins == 10
   end
 
-  def open?
-    total_pins < 10
-  end
-
   def score(frames, idx)
     base = total_pins
     return base if idx >= 9
