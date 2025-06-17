@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Frame
+  MAX_PINS = 10
   attr_reader :shots
 
   def initialize(shots)
@@ -12,28 +13,22 @@ class Frame
   end
 
   def strike?
-  @shots.first&.pins == 10 && @shots.size == 1
+    @shots.first&.pins == MAX_PINS && @shots.size == 1
   end
 
   def spare?
-    !strike? && total_pins == 10
+    !strike? && total_pins == MAX_PINS
   end
 
-  def score(frames, idx)
+  def score(bonus_for_strike: 0, bonus_for_spare: 0)
     base = total_pins
-    return base if idx >= 9
 
     if strike?
-      base + next_pins(frames, idx, 2)
+      base + bonus_for_strike
     elsif spare?
-      base + next_pins(frames, idx, 1)
+      base + bonus_for_spare
     else
       base
     end
-  end
-
-  def next_pins(frames, idx, count)
-    shots = frames[(idx + 1)..].flat_map(&:shots)
-    shots.first(count).sum(&:pins)
   end
 end
