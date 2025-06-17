@@ -36,6 +36,12 @@ def print_grid(entries, terminal_width)
   end
 end
 
-# メイン処理
-entries = Dir.glob('*')
+include_hidden = ARGV.include?('-a')
+
+entries = if include_hidden
+            Dir.glob('{*,.*}')
+          else
+            Dir.glob('*')
+          end
+
 print_grid(entries, TERMINAL_WIDTH)
