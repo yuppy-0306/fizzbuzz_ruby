@@ -38,10 +38,6 @@ end
 
 include_hidden = ARGV.include?('-a')
 
-entries = if include_hidden
-            Dir.glob('{*,.*}')
-          else
-            Dir.glob('*')
-          end
+entries = Dir.glob('*', include_hidden ? File::FNM_DOTMATCH : 0)
 
 print_grid(entries, TERMINAL_WIDTH)
