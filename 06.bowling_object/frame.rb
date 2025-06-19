@@ -13,20 +13,22 @@ class Frame
   end
 
   def strike?
-    @shots.first&.pins == MAX_PINS && @shots.size == 1
+    @shots.any?(&:strike?) && @shots.size == 1
   end
 
   def spare?
     !strike? && total_pins == MAX_PINS
   end
 
-  def score(bonus_for_strike: 0, bonus_for_spare: 0)
+  def score(frames, idx)
     base = total_pins
+    return base if idx >= 9
+    subsequent_shots = frames[(idx + 1)..].flat_map(&:shots)
 
     if strike?
-      base + bonus_for_strike
+      base + subsequent_shots.first(2).sum(&:pins)
     elsif spare?
-      base + bonus_for_spare
+      base + subsequent_shots.first(1).sum(&:pins)
     else
       base
     end
