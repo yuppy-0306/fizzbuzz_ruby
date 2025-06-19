@@ -13,7 +13,7 @@ class Frame
   end
 
   def strike?
-    @shots.any?(&:strike?) && @shots.size == 1
+     @shots.first&.pins == MAX_PINS && @shots.size == 1
   end
 
   def spare?

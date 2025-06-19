@@ -7,7 +7,7 @@ class Shot
     @pins = pins
   end
 
-  def strike?
+  def all_pins_down?
     @pins == Frame::MAX_PINS
   end
 end

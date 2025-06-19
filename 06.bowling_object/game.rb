@@ -23,7 +23,7 @@ class Game
     frames = []
     i = 0
     9.times do
-      if shots[i].strike?
+      if shots[i].all_pins_down?
         frames << Frame.new([shots[i]])
         i += 1
       else
