@@ -27,10 +27,9 @@ def build_grid(entries, num_rows)
 end
 
 def print_grid(entries, terminal_width)
-  sorted = entries.sort
-  width = entries_length_width(sorted)
-  _, num_rows = get_grid_dims(sorted, terminal_width, width)
-  grid = build_grid(sorted, num_rows)
+  width = entries_length_width(entries)
+  _, num_rows = get_grid_dims(entries, terminal_width, width)
+  grid = build_grid(entries, num_rows)
   grid.each do |row|
     puts row.map { |entry| entry.ljust(width) }.join
   end
