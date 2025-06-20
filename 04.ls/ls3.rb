@@ -35,6 +35,10 @@ def print_grid(entries, terminal_width)
   end
 end
 
+reverse_order = ARGV.include?('-r')
+
 entries = Dir.glob('*', 0)
 
+entries.sort!
+entries.reverse! if reverse_order
 print_grid(entries, TERMINAL_WIDTH)
