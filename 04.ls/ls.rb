@@ -26,8 +26,9 @@ def build_grid(entries, num_rows)
   columns.transpose
 end
 
-def print_grid(entries, terminal_width)
+def print_grid(entries, terminal_width, reverse: false)
   sorted = entries.sort
+  sorted.reverse! if reverse
   width = entries_length_width(sorted)
   _, num_rows = get_grid_dims(sorted, terminal_width, width)
   grid = build_grid(sorted, num_rows)
@@ -37,7 +38,8 @@ def print_grid(entries, terminal_width)
 end
 
 include_hidden = ARGV.include?('-a')
+reverse = ARGV.include?('-r')
 
 entries = Dir.glob('*', include_hidden ? File::FNM_DOTMATCH : 0)
 
-print_grid(entries, TERMINAL_WIDTH)
+print_grid(entries, TERMINAL_WIDTH, reverse: reverse)
