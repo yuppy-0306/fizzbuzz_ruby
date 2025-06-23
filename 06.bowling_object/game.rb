@@ -10,7 +10,7 @@ class Game
   end
 
   def calculate_score
-    @frames.each_with_index.sum { |frame, idx| frame.score(@frames, idx) }
+    @frames.sum(&:score)
   end
 
   private
@@ -24,14 +24,14 @@ class Game
     i = 0
     9.times do
       if shots[i].all_pins_down?
-        frames << Frame.new([shots[i]])
+        frames << Frame.new([shots[i]], shots[(i + 1)..(i + 2)])
         i += 1
       else
-        frames << Frame.new([shots[i], shots[i + 1]])
+        frames << Frame.new([shots[i], shots[i + 1]], [shots[i + 2]])
         i += 2
       end
     end
-    frames << Frame.new(shots[i..])
+    frames << Frame.new(shots[i..], [])
     frames
   end
 end
