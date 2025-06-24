@@ -42,4 +42,4 @@ reverse = ARGV.include?('-r')
 
 entries = Dir.glob('*', include_hidden ? File::FNM_DOTMATCH : 0)
 
-print_grid(entries, TERMINAL_WIDTH, reverse: reverse)
+print_grid(entries, TERMINAL_WIDTH, reverse:)
